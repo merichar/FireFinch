@@ -1,0 +1,6 @@
+interfaces components/Finch.xpt
+interfaces components/IFinch.xpt
+binary-component components/Finch.so
+contract @rfmedialab.net/XPCOMFinch/Finch;1 {c901edf0-ddb9-11e0-9572-0800200c9a66}
+category profile-after-change Finch @rfmedialab.net/XPCOMFinch/Finch;1 
+
