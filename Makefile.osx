@@ -1,0 +1,61 @@
+###########################################
+# Simple Makefile for Finch
+# To run for your program, just change TARGET
+#
+# Tom Lauwers, tlauwers@finchrobot.com
+###########################################
+
+#TARGET=CommandLineFinch
+#TARGET=MyProgramName
+
+all: build
+
+CC=gcc
+CXX=g++
+COBJS=./hid.o
+CPPOBJS=./Finch.o $(TARGET)
+#CPPOBJS=./Finch/Finch.o $(TARGET).o
+OBJS=$(COBJS) $(CPPOBJS) build
+CFLAGS=-I./hidapi -g 
+#LIBS=`pkg-config libusb-1.0 --libs`
+#for OSX
+LIBS=-framework IOKit -framework CoreFoundation
+
+
+#Copypasta starts here
+#CXX   = c++
+CPPFLAGS +=     -fno-rtti              \
+		-fno-exceptions        \
+		-shared  
+
+# Change this to point at your Gecko SDK directory. 
+GECKO_SDK_PATH = /Applications/xulrunner-sdk/sdk
+IDL_PATH = /Applications/xulrunner-sdk
+# GCC only define which allows us to not have to #include mozilla-config 
+# in every .cpp file.  If your not using GCC remove this line and add 
+# #include "mozilla-config.h" to each of your .cpp files. 
+GECKO_CONFIG_INCLUDE = -include mozilla-config.h 
+
+GECKO_DEFINES  = -DXPCOM_GLUE -DXPCOM_GLUE_USE_NSPR
+
+#GECKO_INCLUDES = -I $(GECKO_SDK_PATH)/include -I $(IDL_PATH)
+GECKO_INCLUDES = -I /Applications/xulrunner-sdk/include
+GECKO_LDFLAGS = -L$(GECKO_SDK_PATH)/lib -lxpcomglue_s -lxpcom -lnspr4 -lplds4 -lmozalloc -L./  
+
+
+FILES = Finch.cpp FinchModule.cpp hid.o $(GECKO_SDK_PATH)/lib/libxpcomglue_s.a 
+
+TARGET = Finch.dylib
+
+#build:
+build: 
+	
+	$(CXX) -Os $(CFLAGS)  -o $(TARGET) $(LIBS) $(GECKO_CONFIG_INCLUDE) $(GECKO_DEFINES) $(GECKO_INCLUDES) -I./ $(CPPFLAGS) $(CXXFLAGS) $(FILES) $(GECKO_LDFLAGS)
+
+# chmod +x $(TARGET)
+# strip $(TARGET)
+
+
+.PHONY: clean
+
+

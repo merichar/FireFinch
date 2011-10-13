@@ -1,7 +1,7 @@
 #ifndef _FINCH_H_
 #include "IFinch.h"
 #include "xpcom-config.h"
-#define FINCH_CONTRACTID "@rfmedialab.net/XPCOMFinch/Finch;1"
+#define FINCH_CONTRACTID "@tutortechnologies.com/FireFinch/Finch;1"
 #define FINCH_CLASSNAME "Finch XPCOM"
 #define FINCH_CID { \
     0xc901edf0, \
@@ -29,6 +29,10 @@ class Finch : public IFinch
   void keepAlive();
   int finchRead(unsigned char bufToWrite[], unsigned char bufRead[]);
   int finchWrite(unsigned char bufToWrite[]);
+  double* getAccelerations();
+  int* getLightSensors();
+  int* getObstacleSensors();
+
   static void* keepAliveEntryPoint(void * pThis)
     {  
         Finch * pthX = (Finch*)pThis;   // cast from void to Finch object

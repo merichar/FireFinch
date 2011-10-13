@@ -3,19 +3,19 @@
      xmlns:em="http://www.mozilla.org/2004/em-rdf#">
 
 	<Description about="urn:mozilla:install-manifest">
-		<em:id>finch@rfmedialab.net</em:id>
-		<em:name>Finch</em:name>
-		<em:version>1.0</em:version>
+		<em:id>finch@tutortechnologies.com</em:id>
+		<em:name>FireFinch</em:name>
+		<em:version>1.1</em:version>
 		<em:type>2</em:type>
-		<em:creator>RF MediaLab</em:creator>
-		<em:description>Finch Extension</em:description>
-		<em:homepageURL>http://www.rfmedialab.net/</em:homepageURL>
+		<em:creator>tutortechnologies.com</em:creator>
+		<em:description>FireFinch Extension</em:description>
+		<em:homepageURL>http://www.tutortechnologies.com/</em:homepageURL>
 		<em:unpack>true</em:unpack>
 		<em:targetApplication>
 			<Description>
 				<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
 				<em:minVersion>4.0</em:minVersion>
-				<em:maxVersion>6.5.*</em:maxVersion>
+				<em:maxVersion>8.5.*</em:maxVersion>
 			</Description>
 		</em:targetApplication>
 	</Description>      
